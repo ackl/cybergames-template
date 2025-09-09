@@ -1,8 +1,13 @@
 # _Cybergame Name_
 
 ## Authors:
-- _(Username1)[Student Name1]_
-- _(Username2)[Student Name2]_
+| Username | Name |
+|----------|------|
+| _username1_ | _name1_ |
+| _username2_ | _name2_ |
+| _username3_ | _name3_ |
+| _username4_ | _name4_ |
+| _username5_ | _name5_ |
 
 ## Win Conditions:
 _Describe the win conditions for either player (i.e. the × or ○ player)_
