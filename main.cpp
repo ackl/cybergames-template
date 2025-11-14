@@ -16,6 +16,20 @@ void initBoard(int board[M][N], int M, int N) {
 }
 
 int parseBoard(int board[M][N]) {
+#ifndef CYBERGAME_TESTING
+  std::cout << "Current board state:" << std::endl;
+  for (int m = 0; m < M; ++m) {
+    for (int n = 0; n < N; ++n) {
+      if (board[m][n] == 0) {
+        std::cout << "[ ]";
+      } else {
+        std::cout << "[" << board[m][n] << "]";
+      }
+    }
+    std::cout << std::endl;
+  }
+#endif
+
   for (int p = 1; p <= P; ++p) {
     // Horizontal
     for (int m = 0; m < M; ++m) {

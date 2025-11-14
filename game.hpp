@@ -1,7 +1,7 @@
 #pragma once
 
 // Use integer arithmetic for board size
-inline constexpr int M = 1 + (1 << 7); // 129
+inline constexpr int M = 1 + (1 << 3); // 129
 inline constexpr int N = 1 + (1 << 3); // 9
 
 extern int P;
