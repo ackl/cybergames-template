@@ -1,4 +1,4 @@
-CXX ?= g++
+CXX=g++-15
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -pedantic
 
 TARGET := cybergame
