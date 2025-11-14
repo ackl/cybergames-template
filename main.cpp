@@ -2,8 +2,14 @@
 #include <cstdio>
 #include <cstdlib>
 
-const int M = 1 + pow(2, 7);  // You can change this for your specific game!
-const int N = 1 + pow(2, 3);  // You can change this for your specific game!
+// Use integer arithmetic for board size
+const int M = 1 + (1 << 7); // 129
+
+const int N = 1 + (1 << 3); // 9
+
+// Global variables for number of players and win length
+int P = 2; // Default, will be set in main
+int K = 5; // Default, can be set in main
 
 void initBoard(int board[M][N], int M, int N) {
   for (int m = 0; m < M; m++) {
