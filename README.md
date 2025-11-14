@@ -3,14 +3,13 @@
 ## Authors:
 | Username | Name |
 |----------|------|
-| _username1_ | _name1_ |
-| _username2_ | _name2_ |
-| _username3_ | _name3_ |
-| _username4_ | _name4_ |
-| _username5_ | _name5_ |
+| _ackl_ | _Andrew Low_ |
+| _player2_ | _Chao Chao Hu_ |
 
 ## Win Conditions:
-_Describe the win conditions for either player (i.e. the × or ○ player)_
+_The player must obtain a straight row or column of 5_
 
 ## Build Instructions:
-_Describe how a new user should build the software_
+1. Ensure a C++17-compatible compiler (e.g., `g++`) is installed.
+2. From the `cybergames-template` directory, run `make` to build the `cybergame` binary.
+3. Execute `./cybergame` (or `make run`) to start the game, and `make clean` to remove the build output.
