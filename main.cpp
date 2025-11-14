@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
-#include <cstdio>
-#include <cstdlib>
+#include <cassert>
+#include <iostream>
 
 // Use integer arithmetic for board size
 const int M = 1 + (1 << 7); // 129
-
 const int N = 1 + (1 << 3); // 9
 
 // Default variables for number of players and win length
@@ -20,12 +19,64 @@ void initBoard(int board[M][N], int M, int N) {
 }
 
 int parseBoard(int board[M][N]) {
-  /*
-   * This function is where you should define your win conditions.
-   * If player p in [1,...,P] has won, then you should return p; otherwise 0.
-   * If you find yourself with a great deal of spare time you might try
-   * rendering the board to the terminal here, too.
-   */
+  for (int p = 1; p <= P; ++p) {
+    // Horizontal
+    for (int m = 0; m < M; ++m) {
+      for (int n = 0; n <= N - K; ++n) {
+        bool win = true;
+        for (int k = 0; k < K; ++k) {
+          if (board[m][n + k] != p) {
+            win = false;
+            break;
+          }
+        }
+        if (win)
+          return p;
+      }
+    }
+    // Vertical
+    for (int n = 0; n < N; ++n) {
+      for (int m = 0; m <= M - K; ++m) {
+        bool win = true;
+        for (int k = 0; k < K; ++k) {
+          if (board[m + k][n] != p) {
+            win = false;
+            break;
+          }
+        }
+        if (win)
+          return p;
+      }
+    }
+    // Diagonal down-right
+    for (int m = 0; m <= M - K; ++m) {
+      for (int n = 0; n <= N - K; ++n) {
+        bool win = true;
+        for (int k = 0; k < K; ++k) {
+          if (board[m + k][n + k] != p) {
+            win = false;
+            break;
+          }
+        }
+        if (win)
+          return p;
+      }
+    }
+    // Diagonal down-left
+    for (int m = 0; m <= M - K; ++m) {
+      for (int n = K - 1; n < N; ++n) {
+        bool win = true;
+        for (int k = 0; k < K; ++k) {
+          if (board[m + k][n - k] != p) {
+            win = false;
+            break;
+          }
+        }
+        if (win)
+          return p;
+      }
+    }
+  }
   return 0;
 }
 
