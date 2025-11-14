@@ -1,7 +1,7 @@
 CXX=g++-15
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -pedantic
 
-TARGET := cybergame
+TARGET := cybergame.fun
 SRC := main.cpp
 
 .PHONY: all clean run
