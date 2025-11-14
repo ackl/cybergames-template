@@ -1,12 +1,9 @@
+#include "game.hpp"
 #include <bits/stdc++.h>
-#include <cassert>
 #include <iostream>
 
-// Use integer arithmetic for board size
-const int M = 1 + (1 << 7); // 129
-const int N = 1 + (1 << 3); // 9
-
 // Default variables for number of players and win length
+//
 int P = 2;
 int K = 5;
 
@@ -108,84 +105,8 @@ void gameLoop(int board[M][N], bool cont) {
   }
 }
 
-// Test helper to set up board and check winner
-void testParseBoard() {
-  // Test 1: Horizontal win for player 1
-  P = 2;
-  K = 3;
-  int board1[M][N] = {0};
-  board1[0][0] = 1;
-  board1[0][1] = 1;
-  board1[0][2] = 1;
-  assert(parseBoard(board1) == 1);
-
-  // Test 2: Vertical win for player 2
-  P = 2;
-  K = 4;
-  int board2[M][N] = {0};
-  board2[1][5] = 2;
-  board2[2][5] = 2;
-  board2[3][5] = 2;
-  board2[4][5] = 2;
-  assert(parseBoard(board2) == 2);
-
-  // Test 3: Diagonal down-right win for player 1
-  P = 2;
-  K = 3;
-  int board3[M][N] = {0};
-  board3[0][0] = 1;
-  board3[1][1] = 1;
-  board3[2][2] = 1;
-  assert(parseBoard(board3) == 1);
-
-  // Test 4: Diagonal down-left win for player 2
-  P = 2;
-  K = 3;
-  int board4[M][N] = {0};
-  board4[0][2] = 2;
-  board4[1][1] = 2;
-  board4[2][0] = 2;
-  assert(parseBoard(board4) == 2);
-
-  // Test 5: No win
-  P = 2;
-  K = 3;
-  int board5[M][N] = {0};
-  board5[0][0] = 1;
-  board5[0][1] = 2;
-  board5[0][2] = 1;
-  assert(parseBoard(board5) == 0);
-
-  // Test 6: Out of bounds (should not crash)
-  P = 2;
-  K = 3;
-  int board6[M][N] = {0};
-  // No out-of-bounds access in parseBoard, so just check normal
-  assert(parseBoard(board6) == 0);
-
-  // Test 7: Large P and K
-  P = 4;
-  K = 5;
-  int board7[M][N] = {0};
-  for (int i = 0; i < K; ++i)
-    board7[i][0] = 4;
-  assert(parseBoard(board7) == 4);
-
-  // Test 8: Negative values (should not win)
-  P = 2;
-  K = 3;
-  int board8[M][N] = {0};
-  board8[0][0] = -1;
-  board8[0][1] = -1;
-  board8[0][2] = -1;
-  assert(parseBoard(board8) == 0);
-
-  std::cout << "All parseBoard tests passed!" << std::endl;
-}
-
+#ifndef CYBERGAME_TESTING
 int main(int argc, char *argv[]) {
-  testParseBoard();
-
   if (argc >= 3) {
     P = std::atoi(argv[1]);
     K = std::atoi(argv[2]);
@@ -203,3 +124,4 @@ int main(int argc, char *argv[]) {
 
   return EXIT_SUCCESS;
 }
+#endif
