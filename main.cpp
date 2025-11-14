@@ -7,9 +7,9 @@ const int M = 1 + (1 << 7); // 129
 
 const int N = 1 + (1 << 3); // 9
 
-// Global variables for number of players and win length
-int P = 2; // Default, will be set in main
-int K = 5; // Default, can be set in main
+// Default variables for number of players and win length
+int P = 2;
+int K = 5;
 
 void initBoard(int board[M][N], int M, int N) {
   for (int m = 0; m < M; m++) {
@@ -29,26 +29,32 @@ int parseBoard(int board[M][N]) {
   return 0;
 }
 
-void gameLoop(int board[M][N], bool cont, int players, int M, int N) {
+void gameLoop(int board[M][N], bool cont) {
   int winner;
   int m, n;
-  do {
-    for (int p = 1; p <= players; ++p) {
-      std::cout << "Player " << p << " place:";
+  while (cont) {
+    for (int p = 1; p <= P; ++p) {
+      std::cout << "Player " << p << " place (row col): ";
       std::cin >> m >> n;
+      if (m < 0 || m >= M || n < 0 || n >= N) {
+        std::cout << "Out of bounds!" << std::endl;
+        continue;
+      }
       if (board[m][n] == 0) {
         std::cout << p << " at (" << m << ", " << n << ")." << std::endl;
         board[m][n] = p;
       } else {
         std::cout << "Illegal move!" << std::endl;
+        continue;
+      }
+      winner = parseBoard(board);
+      if (winner != 0) {
+        std::cout << "Player " << winner << " has won!" << std::endl;
+        cont = false;
+        break;
       }
     }
-    winner = parseBoard(board);
-    if (winner != 0) {
-      std::cout << "Player " << winner << " has won!" << std::endl;
-      cont = false;
-    }
-  } while (cont);
+  }
 }
 
 int main(void) {
@@ -57,11 +63,14 @@ int main(void) {
   if (argc < 1) {
     return EXIT_FAILURE;
   } else {
-    std::cout << "Initialising game... How many players?";
+    std::cout << "Initialising game... How many players? ";
     std::cin >> P;
+    std::cout << "How many in a row to win? ";
+    std::cin >> K;
   }
+
   int board[M][N];
   initBoard(board, M, N);
-  gameLoop(board, cont, P, M, N);
+  gameLoop(board, true);
   return EXIT_SUCCESS;
 }
